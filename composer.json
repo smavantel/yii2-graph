@@ -1,5 +1,5 @@
 {
-  "name": "avt/hbe",
+  "name": "smavantel/yii2-graph",
   "description": "Yii2 CMS extension",
   "type": "yii2-extension",
   "keywords": [
@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "smavantel\\yii2-graph\\": "src/"
+      "smavantel\\graph\\": "src/"
     }
   }
 
