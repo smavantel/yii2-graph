@@ -1,7 +1,26 @@
 <?php
 
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
+namespace smavantel\graph;
 
+use yii\mail\MailerInterface;
+use yii\base\ViewContextInterface;
+
+class Mailer extends Component implements MailerInterface, ViewContextInterface {
+
+  public function compose($view = null, array $params = []) {
+    
+  }
+
+  public function send($message): bool {
+    ;
+  }
+
+  public function sendMultiple(array $messages): int {
+    ;
+  }
+
+  public function getViewPath(): string {
+    ;
+  }
+
+}
