@@ -1,0 +1,26 @@
+{
+  "name": "avt/hbe",
+  "description": "Yii2 CMS extension",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "yii2-mailer"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Stefan Mager",
+      "email": "s.mager@avantel.de"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "yiisoft/yii2": "~2.0.11"
+  },
+  "autoload": {
+    "psr-4": {
+      "smavantel\\yii2-graph\\": "src/"
+    }
+  }
+
+}
