@@ -5,7 +5,7 @@ namespace smavantel\graph;
 use yii\mail\MailerInterface;
 use yii\base\ViewContextInterface;
 
-class Mailer extends Component implements MailerInterface, ViewContextInterface {
+class Mailer extends \yii\base\Component implements MailerInterface, ViewContextInterface {
 
   public function compose($view = null, array $params = []) {
     
