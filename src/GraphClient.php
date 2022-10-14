@@ -19,11 +19,33 @@ class GraphClient  extends \yii\base\Component {
 
   }
 
-  function getToken() {
+  function getTokeni() {
     $oauthRequest = 'client_id=' . $this->clientID . '&scope=https%3A%2F%2Fgraph.microsoft.com%2F.default&client_secret=' . $this->clientSecret . '&grant_type=client_credentials';
     $reply = $this->sendPostRequest('https://login.microsoftonline.com/' . $this->tenantID . '/oauth2/v2.0/token', $oauthRequest);
     $reply = json_decode($reply['data']);
     return $reply->access_token;
+  }
+  
+  /**
+   * 
+   * @return \smavantel\graph\Token
+   */
+  
+  function getToken() {
+
+    $guzzle = new \GuzzleHttp\Client();
+    $url = 'https://login.microsoftonline.com/' . $this->tenantID . '/oauth2/v2.0/token';
+    $response = $guzzle->post($url, [
+      'form_params' => [
+        'client_id' => $this->clientID,
+        'client_secret' => $this->clientSecret,
+        'scope' => 'https://graph.microsoft.com/.default',
+        'grant_type' => 'client_credentials',
+      ],
+    ]);
+    $content = $response->getBody()->getContents();
+    $data = \yii\helpers\Json::decode($content);
+    return new \smavantel\graph\Token($data);
   }
 
   function basicAddress($addresses) {
