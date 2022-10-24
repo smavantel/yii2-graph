@@ -1,7 +1,7 @@
 <?php
 namespace smavantel\graph;
 
-class Token extends \yii\base\Model {
+class GraphToken extends \yii\base\Model {
 
   public $token_type;
   public $expires_in;
