@@ -10,6 +10,9 @@ class GraphClient extends \yii\base\Component {
   var $Token;
   var $baseURL;
 
+  public $authCertFile = ''; 
+  public $authKeyFile = ''; 
+
   public function init() {
     parent::init();
   }
