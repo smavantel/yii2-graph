@@ -23,6 +23,8 @@ class GraphMailer extends \yii\mail\BaseMailer {
 
   public $client;
   
+  public $clientConfig;
+  
   /**
    * 
    * @var \Microsoft\Graph\Http\GraphResponse
@@ -45,15 +47,26 @@ class GraphMailer extends \yii\mail\BaseMailer {
    * @param GraphMessage $message
    * @return bool
    */
+  protected function getClient() {
+    $graphClient = new GraphClient([
+      'clientID' => $this->clientConfig['clientID'],
+      'tenantID' => $this->clientConfig['tenantID'],
+      'clientSecret' => $this->clientConfig['clientSecret'],
+      ]
+    );
+    $graph = new Microsoft\Graph\Graph();
+    $graph->setAccessToken($graphClient->getToken()->access_token);
+    return $graph;
+  }
+
   protected function sendMessage($message): bool {
-    
+
     $this->graphMessage = $message->getMessage();
 
-    if($this->graphMessage->getFrom())
-    {
-    $data ['from'] = GraphJsonConverter::getRecipientAddress($this->graphMessage->getFrom());
+    if ($this->graphMessage->getFrom()) {
+      $data ['from'] = GraphJsonConverter::getRecipientAddress($this->graphMessage->getFrom());
     }
-    
+
     $messageId = $this->graphMessage->getId();
     
     if (!$messageId) {
@@ -102,6 +115,10 @@ class GraphMailer extends \yii\mail\BaseMailer {
             }
           }
         }
+      }
+
+      if ($this->client == null) {
+        $this->client = $this->getClient();
       }
 
 
