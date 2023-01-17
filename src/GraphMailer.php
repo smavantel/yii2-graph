@@ -3,6 +3,7 @@
 namespace smavantel\graph;
 
 use smavantel\graph\GraphMessage;
+use Microsoft\Graph\Graph;
 
 /**
  * Description of GraphMailer
@@ -54,7 +55,7 @@ class GraphMailer extends \yii\mail\BaseMailer {
       'clientSecret' => $this->clientConfig['clientSecret'],
       ]
     );
-    $graph = new Microsoft\Graph\Graph();
+    $graph = new Graph();
     $graph->setAccessToken($graphClient->getToken()->access_token);
     return $graph;
   }
