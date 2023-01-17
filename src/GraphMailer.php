@@ -11,7 +11,10 @@ use smavantel\graph\GraphMessage;
  */
 class GraphMailer extends \yii\mail\BaseMailer {
 
-  public $mailbox = 'mailer@avantel.de';
+  public $mailbox = 'mailer@example.com';
+  
+  public $messageClass = 'smavantel\graph\GraphMessage';
+  
 
   /**
    * 
