@@ -1,7 +1,8 @@
 <?php
-namespace smavantel\graph;
 
+namespace smavantel\graph;
 use Microsoft\Graph\Model\Message;
+use yii\mail\BaseMessage;
 
 
 /**
@@ -9,7 +10,7 @@ use Microsoft\Graph\Model\Message;
  *
  * @author s.mager
  */
-class GraphMessage extends \yii\mail\BaseMessage {
+class GraphMessage extends BaseMessage {
 
   /**
    * 
