@@ -5,6 +5,7 @@ use Microsoft\Graph\Model\Message;
 use yii\mail\BaseMessage;
 
 
+
 /**
  * Description of MailMessageGraph
  *
