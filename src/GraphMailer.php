@@ -14,6 +14,7 @@ class GraphMailer extends \yii\mail\BaseMailer {
   public $mailbox = 'mailer@example.com';
   
   public $messageClass = 'smavantel\graph\GraphMessage';
+  
 
   /**
    * 
