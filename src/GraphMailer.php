@@ -12,28 +12,48 @@ use Microsoft\Graph\Graph;
  */
 class GraphMailer extends \yii\mail\BaseMailer {
 
+  /**
+   * 
+   * @var string
+   */
   public $mailbox = 'mailer@example.com';
-  
+
+  /**
+   * 
+   * @var string
+   */
   public $messageClass = 'smavantel\graph\GraphMessage';
-  
 
   /**
    * 
    * @return Microsoft\Graph\Graph
    */
-
   public $client;
-  
+
+  /**
+   *  'clientID' => '',
+   *  'tenantID' => '',
+   *  'clientSecret' => '',
+   * @var string[]
+   */
   public $clientConfig;
-  
+
   /**
    * 
    * @var \Microsoft\Graph\Http\GraphResponse
    */
-  
   public $response;
-  
+
+  /**
+   * 
+   * @var string[]
+   */
   public $errors = [];
+
+  /**
+   * 
+   * @var string[]
+   */
   public $messages = [];
 
   /**
@@ -41,12 +61,16 @@ class GraphMailer extends \yii\mail\BaseMailer {
    * @var Message
    */
   public $graphMessage;
+
+  /**
+   * 
+   * @var \Microsoft\Graph\Model\Attachment[]
+   */
   private $_attachments;
 
   /**
    * 
-   * @param GraphMessage $message
-   * @return bool
+   * @return Graph
    */
   protected function getClient() {
     $graphClient = new GraphClient([
@@ -60,6 +84,11 @@ class GraphMailer extends \yii\mail\BaseMailer {
     return $graph;
   }
 
+  /**
+   * 
+   * @param type $message
+   * @return bool
+   */
   protected function sendMessage($message): bool {
 
     $this->graphMessage = $message->getMessage();
