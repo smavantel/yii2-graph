@@ -1,6 +1,6 @@
 {
   "name": "smavantel/yii2-graph",
-  "description": "Yii2 Graph extension",
+  "description": "Yii2 CMS extension",
   "type": "yii2-extension",
   "keywords": [
     "yii2",
@@ -15,13 +15,15 @@
   ],
   "require": {
     "php": ">=7.4",
+
     "yiisoft/yii2": "~2.0.11",
+    "guzzlehttp/guzzle": "^7.0",
     "microsoft/microsoft-graph": "^1.75.0"
+
   },
   "autoload": {
     "psr-4": {
       "smavantel\\graph\\": "src/"
     }
   }
-
 }
