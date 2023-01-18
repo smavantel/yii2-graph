@@ -10,6 +10,7 @@ class GraphClient extends GuzzleClient {
   var $clientID;
   var $clientSecret;
   var $Token;
+
   var $baseURL = 'https://graph.microsoft.com/v1.0';
   public $authCertFile = '';
   public $authKeyFile = '';
@@ -21,6 +22,7 @@ class GraphClient extends GuzzleClient {
   public function getEndpoint($function = 'token') {
     return 'oauth2/v2.0/' . $function;
   }
+
 
   /**
    * 
