@@ -2,16 +2,17 @@
 
 namespace smavantel\graph;
 
-class GraphClient extends \yii\base\Component {
+use GuzzleHttp\Client as GuzzleClient;
+
+class GraphClient extends GuzzleClient {
 
   var $tenantID;
   var $clientID;
   var $clientSecret;
   var $Token;
   var $baseURL;
-
-  public $authCertFile = ''; 
-  public $authKeyFile = ''; 
+  public $authCertFile = '';
+  public $authKeyFile = '';
 
   public function init() {
     parent::init();
@@ -29,9 +30,9 @@ class GraphClient extends \yii\base\Component {
    */
   function getToken() {
 
-    $guzzle = new \GuzzleHttp\Client();
+
     $url = 'https://login.microsoftonline.com/' . $this->tenantID . '/oauth2/v2.0/token';
-    $response = $guzzle->post($url, [
+    $response = $this->post($url, [
       'form_params' => [
         'client_id' => $this->clientID,
         'client_secret' => $this->clientSecret,
@@ -43,6 +44,7 @@ class GraphClient extends \yii\base\Component {
     $data = \yii\helpers\Json::decode($content);
     return new \smavantel\graph\GraphToken($data);
   }
+
 }
 
 ?>
