@@ -2,6 +2,7 @@
   "name": "smavantel/yii2-graph",
   "description": "Yii2 CMS extension",
   "type": "yii2-extension",
+  "version" : "0.1",
   "keywords": [
     "yii2",
     "yii2-mailer"
