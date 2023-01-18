@@ -10,18 +10,16 @@ class GraphClient extends GuzzleClient {
   var $clientID;
   var $clientSecret;
   var $Token;
-  var $baseURL;
+  var $baseURL = 'https://graph.microsoft.com/v1.0';
   public $authCertFile = '';
   public $authKeyFile = '';
 
-  public function init() {
-    parent::init();
-  }
-
-  function __construct($config = []) {
-
-    parent::__construct($config);
-    $this->baseURL = 'https://graph.microsoft.com/v1.0/';
+  /**
+   * 
+   * @return string
+   */
+  public function getEndpoint($function = 'token') {
+    return 'oauth2/v2.0/' . $function;
   }
 
   /**
@@ -30,8 +28,8 @@ class GraphClient extends GuzzleClient {
    */
   function getToken() {
 
-
-    $url = 'https://login.microsoftonline.com/' . $this->tenantID . '/oauth2/v2.0/token';
+    $this->baseURL = 'https://login.microsoftonline.com';
+    $url = $this->baseURL . '/' . $this->tenantID . '/' . $this->getEndpoint();
     $response = $this->post($url, [
       'form_params' => [
         'client_id' => $this->clientID,
