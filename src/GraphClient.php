@@ -31,7 +31,7 @@ class GraphClient extends GuzzleClient {
   function getToken() {
 
     $this->baseURL = 'https://login.microsoftonline.com';
-    $url = $this->baseURL . '' . $this->tenantID . '/' . $this->getEndpoint();
+    $url = $this->baseURL . '/' . $this->tenantID . '/' . $this->getEndpoint();
     $response = $this->post($url, [
       'form_params' => [
         'client_id' => $this->clientID,
