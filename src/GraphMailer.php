@@ -49,12 +49,12 @@ class GraphMailer extends \yii\mail\BaseMailer {
    * @return bool
    */
   protected function getClient() {
-    $graphClient = new GraphClient([
-      'clientID' => $this->clientConfig['clientID'],
-      'tenantID' => $this->clientConfig['tenantID'],
-      'clientSecret' => $this->clientConfig['clientSecret'],
-      ]
-    );
+    
+    $graphClient = new GraphClient();
+    $graphClient->clientID = $this->clientConfig['clientID'];
+    $graphClient->tenantID = $this->clientConfig['tenantID'];
+    $graphClient->clientSecret = $this->clientConfig['clientSecret'];
+
     $graph = new Graph();
     $graph->setAccessToken($graphClient->getToken()->access_token);
     return $graph;
