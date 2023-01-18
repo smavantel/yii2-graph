@@ -10,19 +10,9 @@ class GraphClient extends GuzzleClient {
   var $clientID;
   var $clientSecret;
   var $Token;
-  var $baseURL;
+  var $baseURL = 'https://graph.microsoft.com/v1.0/';
   public $authCertFile = '';
   public $authKeyFile = '';
-
-  public function init() {
-    parent::init();
-  }
-
-  function __construct($config = []) {
-
-    parent::__construct($config);
-    $this->baseURL = 'https://graph.microsoft.com/v1.0/';
-  }
 
   /**
    * 
