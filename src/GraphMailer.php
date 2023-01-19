@@ -258,4 +258,30 @@ class GraphMailer extends \yii\mail\BaseMailer {
     return true;
   }
 
+  public static function QuickSend($to, $subject, $body, $params = []) {
+
+    if (!isset($params['mailer'])) {
+      $mailer = Yii::$app->mailer;
+    } else {
+      $mailer = $params['mailer'];
+    }
+
+
+    $from = ['mailer@avantel.de' => 'AVANTEL Mailer'];
+    $message = $mailer->compose()
+      ->setFrom($from)
+      ->setTo($to)
+      ->setSubject($subject)
+      ->setHtmlBody($body);
+    if (isset($params['attachment'])) {
+      $files = $params['attachment'];
+      foreach ($files as $file => $name) {
+        $message->attach($file, ['name' => $name]);
+      }
+    }
+
+    $send = $message->send();
+    return $send;
+  }
+
 }
