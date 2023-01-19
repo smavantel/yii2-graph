@@ -304,11 +304,11 @@ class GraphMessage extends BaseMessage {
         'isInline' => true,
         'contentId' => $options['contentId']
       ];
-    }
-    else{
-      throw new InvalidConfigException('LogoImage fehlt'); 
+    } else {
+      if (isset($options['logoImage'])) {
+        throw new InvalidConfigException('Die Datei ' . $options['logoImage'] . ' existiert nicht');
+      }
       //new Exception('LogoImage fehlt');
-      
     }
 
     $this->data['signature']['content'] = $signatur;
