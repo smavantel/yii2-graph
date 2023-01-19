@@ -304,6 +304,9 @@ class GraphMessage extends BaseMessage {
         'contentId' => $options['contentId']
       ];
     }
+    else{
+      throw new Exception('LogoImage fehlt');
+    }
 
     $this->data['signature']['content'] = $signatur;
     if ($m != null) {
