@@ -206,7 +206,7 @@ class GraphMessage extends BaseMessage {
   }
 
   public function setTo($to): self {
-    return $this->setRecipient('toRecipients', $to);
+    return $this->setRecipient(self::RECIPIENTS_TO, $to);
   }
   
     public function setReplyTo($replyTo): self {
