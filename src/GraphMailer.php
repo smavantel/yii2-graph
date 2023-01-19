@@ -92,17 +92,13 @@ class GraphMailer extends \yii\mail\BaseMailer {
   
   public function compose($view = null, array $params = []) {
     $message = $this->createMessage();
-
     if ($view === null) {
       return $message;
     }
-
     if (!array_key_exists('message', $params)) {
       $params['message'] = $message;
     }
-
     $this->_message = $message;
-
     if (is_array($view)) {
       if (isset($view['html'])) {
         $html = $this->render($view['html'], $params, $this->htmlLayout);
@@ -113,7 +109,6 @@ class GraphMailer extends \yii\mail\BaseMailer {
     } else {
       $html = $this->render($view, $params, $this->htmlLayout);
     }
-
 
     $this->_message = null;
 
@@ -137,9 +132,6 @@ class GraphMailer extends \yii\mail\BaseMailer {
         $message->setTextBody($text);
       }
     }
-
-    var_dump($message);
-
     return $message;
   }
 
