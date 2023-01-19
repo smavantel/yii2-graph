@@ -64,11 +64,14 @@ class GraphMessage extends BaseMessage {
         'contentType' => '',
         'content' => '',
       ],
+      /*
       'attachments' => [],
       'signature' => [
         'content' => '',
         'requestParams' => ''
       ]
+       * 
+       */
     ];
     return $data;
   }
