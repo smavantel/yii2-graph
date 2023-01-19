@@ -67,6 +67,12 @@ class GraphMailer extends \yii\mail\BaseMailer {
    * @var \Microsoft\Graph\Model\Attachment[]
    */
   private $_attachments;
+  
+  /**
+   * 
+   * @var GraphMessage
+   */
+  private $_message;
 
   /**
    * 
