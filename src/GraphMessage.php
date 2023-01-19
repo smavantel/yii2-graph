@@ -20,6 +20,11 @@ class GraphMessage extends BaseMessage {
    */
   private $_message;
   public $data;
+  /**
+   * nur 'text' oder 'html' möglich
+   * @var string
+   */
+  public $bodyType;
   
   CONST RECIPIENTS_TO = 'toRecipients';
   CONST RECIPIENTS_CC = 'ccRecipients';
@@ -118,6 +123,7 @@ class GraphMessage extends BaseMessage {
   }
 
   public function setHtmlBody($html): self {
+    $this->bodyType = 'html';
     $this->data ['body'] = [
       'contentType' => 'html',
       'content' => $html,
@@ -140,10 +146,13 @@ class GraphMessage extends BaseMessage {
   }
 
   public function setTextBody($text): self {
-    $this->data ['body'] = [
-      'contentType' => 'text',
-      'content' => $text,
-    ];
+    if ($this->bodyType == null) {
+      $this->bodyType = 'text';
+      $this->data ['body'] = [
+        'contentType' => 'text',
+        'content' => $text,
+      ];
+    }
     return $this;
   }
 

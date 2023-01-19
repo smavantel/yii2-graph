@@ -83,6 +83,59 @@ class GraphMailer extends \yii\mail\BaseMailer {
     $graph->setAccessToken($graphClient->getToken()->access_token);
     return $graph;
   }
+  
+  public function compose($view = null, array $params = []) {
+    $message = $this->createMessage();
+
+    if ($view === null) {
+      return $message;
+    }
+
+    if (!array_key_exists('message', $params)) {
+      $params['message'] = $message;
+    }
+
+    $this->_message = $message;
+
+    if (is_array($view)) {
+      if (isset($view['html'])) {
+        $html = $this->render($view['html'], $params, $this->htmlLayout);
+      }
+      if (isset($view['text'])) {
+        $text = $this->render($view['text'], $params, $this->textLayout);
+      }
+    } else {
+      $html = $this->render($view, $params, $this->htmlLayout);
+    }
+
+
+    $this->_message = null;
+
+    if (isset($html)) {
+      $message->setHtmlBody($html);
+    }
+    if (isset($text)) {
+      $message->setTextBody($text);
+    } elseif (isset($html)) {
+      if (preg_match('~<body[^>]*>(.*?)</body>~is', $html, $match)) {
+        $html = $match[1];
+      }
+      // remove style and script
+      $html = preg_replace('~<((style|script))[^>]*>(.*?)</\1>~is', '', $html);
+      // strip all HTML tags and decoded HTML entities
+      $text = html_entity_decode(strip_tags($html), ENT_QUOTES | ENT_HTML5, Yii::$app ? Yii::$app->charset : 'UTF-8');
+      // improve whitespace
+      $text = preg_replace("~^[ \t]+~m", '', trim($text));
+      $text = preg_replace('~\R\R+~mu', "\n\n", $text);
+      if ($message->bodyType == 'text') {
+        $message->setTextBody($text);
+      }
+    }
+
+    var_dump($message);
+
+    return $message;
+  }
 
   /**
    * 
