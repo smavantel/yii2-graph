@@ -95,6 +95,8 @@ class GraphMailer extends \yii\mail\BaseMailer {
   public function compose($view = null, array $params = []) {
     $message = $this->createMessage();
     if ($view === null) {
+      // initilisiert das data['body']['content']
+      $message->setHtmlBody('');
       return $message;
     }
     if (!array_key_exists('message', $params)) {

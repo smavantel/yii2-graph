@@ -19,6 +19,8 @@ class GraphMessage extends BaseMessage {
    * @var Message
    */
   private $_message;
+  
+  
   public $data;
   /**
    * nur 'text' oder 'html' möglich
@@ -40,6 +42,41 @@ class GraphMessage extends BaseMessage {
     'bccRecipients',
     'replyTo',
   ];
+  
+  
+  public function init() {
+    parent::init();
+    $this->data = $this->initData();
+  }
+  
+  
+  /**
+   * 
+   * https://learn.microsoft.com/en-us/graph/api/resources/message?view=graph-rest-1.0
+   * es gibt noch mehr, ggf. ergänzen
+   * @return string[]
+   */
+  
+  public function initData() {
+    $data = [
+      'subject' => '',
+      'body' => [
+        'contentType' => '',
+        'content' => '',
+      ],
+      'attachments' => [],
+      'signature' => [
+        'content' => '',
+        'requestParams' => ''
+      ]
+    ];
+    return $data;
+  }
+  
+  /**
+   * 
+   * @return string[]
+   */
 
   public static function getRecipientTypes() {
     return self::$recipientTypes;
@@ -121,40 +158,40 @@ class GraphMessage extends BaseMessage {
 
     return $this;
   }
-
-  public function setHtmlBody($html): self {
-    $this->bodyType = 'html';
-    $this->data ['body'] = [
-      'contentType' => 'html',
-      'content' => $html,
-    ];
-    return $this;
-  }
-
-  public function getHtmlBody($html): self {
-    return $this->data['body']['content'];
-  }
-
-  public function setReplyTo($replyTo): self {
-   return $this->setRecipient(self::RECIPIENTS_REPLY_TO, $replyTo);
-  }
-
-  public function setSubject($subject): self {
+  
+    public function setSubject($subject): self {
     $this->data['subject'] = $subject;
     $this->getMessage()->setSubject($subject);
     return $this;
   }
 
+  public function setBody($html, $type): self {
+    $this->bodyType = $type;
+    $this->data ['body'] = [
+      'contentType' => $type,
+      'content' => $html,
+    ];
+    return $this;
+  }
+
+  public function setHtmlBody($html): self {
+    return $this->setBody($html, 'html');
+  }
+
   public function setTextBody($text): self {
     if ($this->bodyType == null) {
-      $this->bodyType = 'text';
-      $this->data ['body'] = [
-        'contentType' => 'text',
-        'content' => $text,
-      ];
+      return $this->setBody($text, 'text');
     }
     return $this;
   }
+
+  public function getHtmlBody(): self {
+    return $this->data['body']['content'];
+  }
+
+
+
+
 
   public function setRecipient($typ, $address): self {
     if ($address) {
@@ -171,6 +208,11 @@ class GraphMessage extends BaseMessage {
   public function setTo($to): self {
     return $this->setRecipient('toRecipients', $to);
   }
+  
+    public function setReplyTo($replyTo): self {
+    return $this->setRecipient(self::RECIPIENTS_REPLY_TO, $replyTo);
+  }
+
 
   /**
    * 
