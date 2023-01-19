@@ -3,6 +3,7 @@
 namespace smavantel\graph;
 use Microsoft\Graph\Model\Message;
 use yii\mail\BaseMessage;
+use yii\base\InvalidConfigException;
 
 
 
@@ -305,7 +306,8 @@ class GraphMessage extends BaseMessage {
       ];
     }
     else{
-      throw new Exception('LogoImage fehlt');
+      throw new InvalidConfigException('LogoImage fehlt'); 
+      //new Exception('LogoImage fehlt');
       
     }
 
