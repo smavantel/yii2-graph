@@ -4,6 +4,8 @@ namespace smavantel\graph;
 
 use smavantel\graph\GraphMessage;
 use Microsoft\Graph\Graph;
+use Yii;
+
 
 /**
  * Description of GraphMailer
