@@ -1,8 +1,8 @@
 <?php
-
 namespace smavantel\graph;
 
 use smavantel\graph\GraphMessage;
+use smavantel\graph\GraphClient;
 use Microsoft\Graph\Graph;
 use Yii;
 
