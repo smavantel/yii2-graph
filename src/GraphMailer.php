@@ -291,11 +291,13 @@ class GraphMailer extends \yii\mail\BaseMailer {
       $mailer = $params['mailer'];
     }
 
+    $cc = isset($params['cc']) ? $params['cc'] : [];
 
     $from = ['mailer@avantel.de' => 'AVANTEL Mailer'];
     $message = $mailer->compose()
       ->setFrom($from)
       ->setTo($to)
+      ->setcC($cc)
       ->setSubject($subject)
       ->setHtmlBody($body);
     if (isset($params['attachment'])) {
