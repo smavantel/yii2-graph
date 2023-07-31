@@ -11,6 +11,7 @@ use Yii;
  * Description of GraphMailer
  *
  * @author s.mager
+ * 
  */
 class GraphMailer extends \yii\mail\BaseMailer {
 
