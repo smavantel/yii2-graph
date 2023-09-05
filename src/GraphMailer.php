@@ -133,9 +133,12 @@ class GraphMailer extends \yii\mail\BaseMailer {
       // improve whitespace
       $text = preg_replace("~^[ \t]+~m", '', trim($text));
       $text = preg_replace('~\R\R+~mu', "\n\n", $text);
+      /*
       if ($message->bodyType == 'text') {
         $message->setTextBody($text);
       }
+       * 
+       */
     }
     return $message;
   }
