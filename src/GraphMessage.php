@@ -5,6 +5,8 @@ use Microsoft\Graph\Model\Message;
 use yii\mail\BaseMessage;
 use yii\base\InvalidConfigException;
 
+use smavantel\graph\ms\EmailAddress;
+
 
 
 
@@ -148,7 +150,7 @@ class GraphMessage extends BaseMessage {
       $address = key($from);
       $name = $from[$address];
     }
-    $emailAdress = new \Microsoft\Graph\Model\EmailAddress();
+    $emailAdress = new EmailAddress();
     $emailAdress->address = $address;
     if ($name) {
       $emailAdress->name = $name;
