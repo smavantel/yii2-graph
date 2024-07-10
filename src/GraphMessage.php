@@ -149,6 +149,9 @@ class GraphMessage extends BaseMessage {
     if (is_array($from)) {
       $address = key($from);
       $name = $from[$address];
+    } else {
+      $address = $from;
+      $name = null;
     }
     $emailAdress = new EmailAddress();
     $emailAdress->address = $address;
