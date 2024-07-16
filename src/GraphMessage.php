@@ -14,6 +14,7 @@ use smavantel\graph\ms\EmailAddress;
  * Description of MailMessageGraph
  *
  * @author s.mager
+ * 16.07.2024
  */
 class GraphMessage extends BaseMessage {
 
