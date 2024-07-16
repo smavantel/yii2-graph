@@ -174,7 +174,7 @@ class GraphMessage extends BaseMessage {
     return $this;
   }
 
-  public function setBody($html, $type): self {
+  public function setBody($html, $type='html'): self {
     $this->bodyType = $type;
     $this->data ['body'] = [
       'contentType' => $type,
