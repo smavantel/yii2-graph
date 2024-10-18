@@ -139,6 +139,7 @@ class GraphMessage extends BaseMessage {
   }
 
   public function setCc($cc): self {
+
      return $this->setRecipient(self::RECIPIENTS_CC, $cc);
   }
 
@@ -209,6 +210,7 @@ class GraphMessage extends BaseMessage {
         $this->data[$typ] = [];
       }
       $addresses = $this->convertAddress($address);
+      
       $this->data[$typ] = $addresses;
     }
 
@@ -343,13 +345,16 @@ class GraphMessage extends BaseMessage {
     }
     $addresses = [];
     foreach ($emailName as $address => $name) {
-      $emailAddress['address'] = $address;
-      if ($name) {
-        $emailAddress['name'] = $name;
+      if (is_int($address)) {
+        $emailAddress['address'] = $name;
+      } else {
+        $emailAddress['address'] = $address;
+        if ($name) {
+          $emailAddress['name'] = $name;
+        }
       }
       $addresses[] = ['emailAddress' => $emailAddress];
     }
     return $addresses;
   }
-
 }
