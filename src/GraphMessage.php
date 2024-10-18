@@ -338,6 +338,7 @@ class GraphMessage extends BaseMessage {
    * 'name' => 'Name', 
    * ] 
    */
+  
   public function convertAddress($emailName) {
     if (!is_array($emailName)) {
       $emailNamen[$emailName] = '';
