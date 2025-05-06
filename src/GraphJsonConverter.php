@@ -12,8 +12,8 @@ class GraphJsonConverter {
     $emailAddress = $recipient->getEmailAddress();
     return [
       "emailAddress" => [
-        'name' => $emailAddress->name,
-        'address' => $emailAddress->address,
+        'name' => $emailAddress->getName(),
+        'address' => $emailAddress->getAddress(),
       ]
     ];
   }
