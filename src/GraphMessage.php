@@ -146,6 +146,7 @@ class GraphMessage extends BaseMessage {
   public function setCharset($charset): self {
     ;
   }
+  
 
   public function setFrom($from): self {
     if (is_array($from)) {
