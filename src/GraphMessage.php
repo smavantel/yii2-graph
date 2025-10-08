@@ -147,7 +147,6 @@ class GraphMessage extends BaseMessage {
     ;
   }
   
-
   public function setFrom($from): self {
     if (is_array($from)) {
       $address = key($from);
