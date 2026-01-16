@@ -1,4 +1,5 @@
 <?php
+
 namespace smavantel\graph;
 
 /**
@@ -10,12 +11,12 @@ class GraphJsonConverter {
 
   public static function getRecipientAddress($recipient) {
     $emailAddress = $recipient->getEmailAddress();
-    return [
+    $r = [
       "emailAddress" => [
-        'name' => $emailAddress->getName(),
-        'address' => $emailAddress->getAddress(),
+        'name' => $emailAddress->name,
+        'address' => $emailAddress->address,
       ]
     ];
+    return $r;
   }
-
 }
