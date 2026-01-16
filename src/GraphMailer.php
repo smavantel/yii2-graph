@@ -152,6 +152,7 @@ class GraphMailer extends \yii\mail\BaseMailer {
 
     $this->graphMessage = $message->getMessage();
 
+    // FROM 
     if ($this->graphMessage->getFrom()) {
       $data ['from'] = GraphJsonConverter::getRecipientAddress($this->graphMessage->getFrom());
     }
