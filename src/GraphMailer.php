@@ -155,7 +155,7 @@ class GraphMailer extends \yii\mail\BaseMailer {
     if ($this->graphMessage->getFrom()) {
       $data ['from'] = GraphJsonConverter::getRecipientAddress($this->graphMessage->getFrom());
     }
-
+    
     $messageId = $this->graphMessage->getId();
     
     if (!$messageId) {
@@ -210,6 +210,7 @@ class GraphMailer extends \yii\mail\BaseMailer {
         $this->client = $this->getClient();
       }
 
+      \Yii::debug($data['from'],'graphMailer');
 
       $requestCreate = $this->client->createRequest("POST", '/users/' . $this->mailbox . '/messages')
         ->attachBody($data);
