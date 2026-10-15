@@ -2,6 +2,10 @@
 
 namespace smavantel\graph;
 
+/*
+ * Test
+ */
+
 class GraphClient extends \yii\base\Component {
 
   var $tenantID;
